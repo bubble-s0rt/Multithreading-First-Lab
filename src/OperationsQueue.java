@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.Random;
 
 public class OperationsQueue {
@@ -33,19 +35,24 @@ public class OperationsQueue {
         operations.add(amount);
     }
 
+    public int getNextItem() throws InterruptedException {
+    return operations.take(); //available na howa porjonto wait
+}
+
    
-    public synchronized int getNextItem() {
-        // add a small delay to simulate the time taken to get the next operation.
-        while(operations.isEmpty()) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        return operations.remove(0);
-    }
+    // public synchronized int getNextItem() {
+    //     // add a small delay to simulate the time taken to get the next operation.
+    //     while(operations.isEmpty()) {
+    //         try {
+    //             Thread.sleep(100);
+    //         } catch (InterruptedException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+    //     return operations.remove(0);
+    // }
 
-
+    //this  part is not efficient due to the while loop, knows as busy waiting, consumes more cpu.
+   //so more efficient methods using blocking queue and linked blocking queue
 
 }
