@@ -13,29 +13,39 @@ public class Main {
         OperationsQueue operationsQueue = new OperationsQueue();
         Bank bank = new Bank("123", operationsQueue);
 
+
         System.out.println("Initializing simulation....");
-        Thread simulationThread = new Thread(() -> {
+
+        Thread simulationThread = new Thread(() ->
+        {
             operationsQueue.addSimulation(totalNumberOfSimulaion);
+            System.out.println("Added tio queue");
         });
-        simulationThread.start();
+        
 
 
         System.out.println("Initializing deposit systen....");
+
         Thread depositThread = new Thread(() -> {
             bank.deposit();
+            System.out.println("Deposit done.");
         });
-        depositThread.start();
-        //System.out.println("coompleted");
+       
+       
 
         System.out.println("Initializing withdraw systen....");
+
         Thread withdrawThread = new Thread(() -> {
             bank.withdraw();
+            System.out.println("Withdraw done.");
         });
+        
+
+
+        simulationThread.start();
+        depositThread.start();
         withdrawThread.start();
-        //System.out.println("coompleted"); //message before finishing thread so,
-
-
-        //System.out.println("coompleted");
+      
         
         try {
             simulationThread.join();
