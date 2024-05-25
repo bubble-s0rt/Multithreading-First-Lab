@@ -24,8 +24,10 @@ public class Bank {
                 break;
             }
             if (amount>0) {
-                balance =  balance + amount;
-                System.out.println("Deposited: " + amount + " Balance: " + balance);
+                synchronized (this){
+                    balance =  balance + amount;
+                    System.out.println("Deposited: " + amount + " Balance: " + balance);
+                }
             }
             else{
                 //operationsQueue.add(amount); didnt add the invalie amount
@@ -58,8 +60,15 @@ public class Bank {
             }
 
             if (amount<0) {
-                balance =  balance + amount;
-                System.out.println("Withdrawn: " + amount + " Balance: " + balance);
+                synchronized(this){
+                    if(balance+amount>=0){
+                        balance =  balance + amount;
+                        System.out.println("Withdrawn: " + amount + " Balance: " + balance);
+                    }else{
+                        System.out.println("you dont have the balance for withdrawal : " + amount);
+                    }
+                }
+                
             }
             else{
                 //operationsQueue.add(amount);
