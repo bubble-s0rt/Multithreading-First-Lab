@@ -28,8 +28,8 @@ public class Bank {
                 System.out.println("Deposited: " + amount + " Balance: " + balance);
             }
             else{
-                operationsQueue.add(amount);
-                System.out.println("operation added back "+amount);
+                //operationsQueue.add(amount); didnt add the invalie amount
+                System.out.println("Invalied deposit amount "+amount);
             }
 
           }
@@ -62,8 +62,8 @@ public class Bank {
                 System.out.println("Withdrawn: " + amount + " Balance: " + balance);
             }
             else{
-                operationsQueue.add(amount);
-                System.out.println("operation added back "+amount);
+                //operationsQueue.add(amount);
+                System.out.println("Invalid withdraw amount "+amount);
             }
 
         }
