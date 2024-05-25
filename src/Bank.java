@@ -1,10 +1,11 @@
 
 public class Bank {
-    String accountNumber;
+    
+    private final String accountNumber;
 
-    OperationsQueue operationsQueue;
+    private final OperationsQueue operationsQueue;
 
-    int balance = 0;
+    private int balance = 0;
 
     public Bank(String accountNumber, OperationsQueue operationsQueue) {
         this.accountNumber = accountNumber;
